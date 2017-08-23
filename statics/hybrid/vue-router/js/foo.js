@@ -1,0 +1,1 @@
+window.Foo = { template: '<div>foo</div>' };
