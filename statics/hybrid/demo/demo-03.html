@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+</head>
+
+<body>
+    <p>1.数组去重(for循环中每次从原数组中取出一个元素，用这个元素循环与结果数组对比)</p>
+    <p>2.数组去重(排序去重)</p>
+    <p>3.使用对象的属性(每次从原数组中取出一个元素，然后到对象中去访问这个属性，如果能访问到值，则说明重复)</p>
+</body>
+<script>
+    var arr = [1, 2, 3, 1, 5, 6, 5];
+    var arrnew = [arr[0]];
+    var flag = false;
+    for (var i = 0; i < arr.length; i++) {
+        for (var n = 0; n < arr.length; n++) {
+            if (arrnew[n] != arr[i]) {
+                flag = true;
+            } else {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            arrnew.push(arr[i]);
+        }
+
+    }
+    console.log(arrnew);
+
+    //先排序
+    arr.sort();
+    arrnew.length = 1;
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] != arrnew[arrnew.length - 1]) {
+            arrnew.push(arr[i]);
+        }
+    }
+    console.log(arrnew);
+
+    //
+
+    Array.prototype.fn3 = function() {
+        var arrnew = [];
+        var obj = {};
+        for (var i = 0; i < this.length; i++) {
+            if (!obj[this[i]]) {
+                arrnew.push(this[i]);
+                obj[this[i]] = 1;
+            }
+        }
+        return arrnew;
+    }
+    console.log(arr.fn3());
+</script>
+
+</html>

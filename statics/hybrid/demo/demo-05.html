@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head ng-app="selectExample">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body ng-controller="ExampleController">
+    <div>
+        <ul>
+            <li ng-repeat="color in colors">
+                <label>Name: <input ng-model="color.name"></label>
+                <label><input type="checkbox" ng-model="color.notAnOption"> Disabled?</label>
+                <button ng-click="colors.splice($index, 1)" aria-label="Remove">X</button>
+            </li>
+            <li>
+                <button ng-click="colors.push({})">add</button>
+            </li>
+        </ul>
+        <hr/>
+        <label>Color (null not allowed):<select ng-model="myColor" ng-options="color.name for color in colors"></select></label><br/>
+        <label>Color (null allowed):
+  <span  class="nullable">
+    <select ng-model="myColor" ng-options="color.name for color in colors">
+      <option value="">-- choose color --</option>
+    </select>
+  </span></label><br/>
+
+        <label>Color grouped by shade:
+    <select ng-model="myColor" ng-options="color.name group by color.shade for color in colors">
+    </select>
+  </label><br/>
+
+        <label>Color grouped by shade, with some disabled:
+    <select ng-model="myColor"
+          ng-options="color.name group by color.shade disable when color.notAnOption for color in colors">
+    </select>
+  </label><br/> Select <button ng-click="myColor = { name:'not in list', shade: 'other' }">bogus</button>.
+        <br/>
+        <hr/> Currently selected: {{ {selected_color:myColor} }}
+        <div style="border:solid 1px black; height:20px" ng-style="{'background-color':myColor.name}">
+        </div>
+    </div>
+</body>
+
+<script>
+    var app = angular.module('selectExample', []);
+
+    app.controller('ExampleController', function($scope) {
+        $scope.colors = [{
+            name: 'black',
+            shade: 'dark'
+        }, {
+            name: 'white',
+            shade: 'light',
+            notAnOption: true
+        }, {
+            name: 'red',
+            shade: 'dark'
+        }, {
+            name: 'blue',
+            shade: 'dark',
+            notAnOption: true
+        }, {
+            name: 'yellow',
+            shade: 'light',
+            notAnOption: false
+        }];
+        $scope.myColor = $scope.colors[2]; // red
+    });
+</script>
+
+</html>
