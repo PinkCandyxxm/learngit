@@ -16,3 +16,5 @@ http://my.csdn.net/mevicky
 https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model
 //prototype与_proto_的区别
 http://blog.csdn.net/ligang2585116/article/details/53522741
+//
+https://github.com/amfe/lib-flexible/tree/master
