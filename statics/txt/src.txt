@@ -18,3 +18,5 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model
 http://blog.csdn.net/ligang2585116/article/details/53522741
 //
 https://github.com/amfe/lib-flexible/tree/master
+//h5图片拖拽点击上传预览
+http://www.cnblogs.com/cboyce/p/6163495.html
