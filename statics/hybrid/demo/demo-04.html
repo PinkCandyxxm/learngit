@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <ul>
+        <li>1121212</li>
+        <li>121212121</li>
+        <li>2223232323</li>
+        <li>2223333</li>
+        <li>33334443</li>
+        <li>33333333</li>
+        <li>44444444</li>
+        <li>44444444</li>
+    </ul>
+    <span class="prev">上一页</span>
+    <span class="next">下一页</span>
+</body>
+<script>
+    var pagesInit = (function(window) {
+        var pagesInit = function() {
+            return new pagesInit.fn.init();
+        }
+        pagesInit.fn = pagesInit.prototype = {
+            constructor: pagesInit,
+            init: function() {
+                this._li = $('ul li');
+                this._length = this._li.length;
+                this._num = 2;
+                this.pages = Math.ceil(this._length / 2);
+                this._nowpages = 1;
+                this.pageinit = function() {
+                    this.pagefn(this._nowpages);
+                }
+                this.nextpages = function() {
+                    this.nextpagesfn();
+                }
+                this.prevpages = function() {
+                    this.prevpagesfn();
+                }
+            },
+            pagefn: function(e) {
+                this._li.hide();
+                for (var i = this._num * (e - 1); i < this._num * e; i++) {
+                    $(this._li[i]).show();
+                }
+            },
+            nextpagesfn: function() {
+                //下一页点击
+                this._nowpages = this._nowpages + 1;
+                if (this._nowpages == this.pages + 1) {
+                    this._nowpages = this.pages;
+                    console.log('最后一页了');
+                    return;
+                } else {
+                    this.pagefn(this._nowpages);
+                }
+            },
+            prevpagesfn: function() {
+                //上一页点击
+                this._nowpages = this._nowpages - 1;
+                if (this._nowpages == 0) {
+                    this._nowpages = 1;
+                    console.log('第一页了');
+                    return;
+                } else {
+                    this.pagefn(this._nowpages);
+                }
+            }
+        }
+        pagesInit.fn.init.prototype=pagesInit.fn;
+        return pagesInit;
+    })();
+    var init = pagesInit();
+    init.pageinit();
+    $('.next').click(function() {
+        init.nextpages();
+    });
+    $('.prev').click(function() {
+        init.prevpages();
+    });
+    // (function() {
+    //     var _li = $('ul li');
+    //     var _length = _li.length;
+    //     var _num = 2;
+    //     var pages = Math.ceil(_length / 2);
+    //     var _nowpages = 1;
+
+    //     function init(e) {
+    //         //初始化显示第一页（前两个li）
+    //         _li.hide();
+    //         for (var i = _num * (e - 1); i < _num * e; i++) {
+    //             $(_li[i]).show();
+    //         }
+    //     }
+    //     init(_nowpages);
+    //     $('.prev').click(function() {
+    //         //上一页点击
+    //         _nowpages = _nowpages - 1;
+    //         if (_nowpages == 0) {
+    //             _nowpages = 1;
+    //             console.log('第一页了');
+    //             return;
+    //         } else {
+    //             init(_nowpages);
+    //         }
+    //     });
+    //     $('.next').click(function() {
+    //         //下一页点击
+    //         _nowpages = _nowpages + 1;
+    //         if (_nowpages == pages + 1) {
+    //             _nowpages = pages;
+    //             console.log('最后一页了');
+    //             return;
+    //         } else {
+    //             init(_nowpages);
+    //         }
+    //     });
+    // })();
+</script>
+
+</html>
