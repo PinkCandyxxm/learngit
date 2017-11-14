@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <style>
+        .demo1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .demo {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='demo'>
+        <div class='demo1'>
+            <img src="http://www.lanrentuku.com/down/js/images/12460764740.jpg">
+            <img src="http://www.lanrentuku.com/down/js/images/12460764741.jpg">
+            <img src="http://www.lanrentuku.com/down/js/images/12460764742.jpg">
+            <img src="http://www.lanrentuku.com/down/js/images/12460764743.jpg">
+            <img src="http://www.lanrentuku.com/down/js/images/12460764744.jpg">
+        </div>
+    </div>
+    <span>停止</span>
+    <script>
+        //向上滚动
+
+        var timer = setInterval(function() {
+            var _box=document.getElementsByClassName('demo1')[0];
+            var _pbox=document.getElementsByClassName('demo')[0];
+            if (parseInt(_box.style.top) < -(_box.clientHeight-_pbox.clientHeight)) {
+                _box.style.top = 0;
+            } else {
+                _box.style.top = parseInt(_box.style.top || 0) - 2 + 'px';
+            }
+        }, 100);
+
+        document.getElementsByTagName('span')[0].onclick=function() {
+            clearInterval(timer);
+        };
+    </script>
+
+</body>
+
+</html>

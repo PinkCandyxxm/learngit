@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>js实现div自动滚动</title>
+</head>
+<style>
+    #menu li {
+        float: left;
+        position: relative;
+        line-height: 35px;
+    }
+    
+    #menu li .sub {
+        width: 300px;
+        height: 300px;
+        background-color: #000;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        display: none;
+    }
+</style>
+<script src="http://r03.uzaicdn.com/content/libs/jquery-1.11.1.min.js"></script>
+
+<body>
+    <ul id="menu">
+        <li>
+            <a href="a">aaaa</a>
+            <div class="sub"></div>
+        </li>
+    </ul>
+
+    <script>
+        var li = $("#menu li a");
+        var tm;
+        li.hover(function() {
+            var a = $(this).parent().find(".sub");
+            if (tm) {
+                clearTimeout(tm);
+            }
+            a.show();
+            $(this).attr("data-id", "1");
+        }, function() {
+            var a = $(this).parent().find(".sub");
+            tm = setTimeout(function() {
+                $(this).attr("data-id", "0");
+                a.hide();
+            }, 1000);
+        });
+    </script>
+
+</body>
+
+</html>
