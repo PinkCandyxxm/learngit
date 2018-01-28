@@ -3,8 +3,408 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .right-news-fixed{
+            width: 360px;
+            height: 100%;
+            background: #fff;
+            box-shadow: 0 1px 10px 1px #ddd;
+            position: fixed;
+            top: 0;
+            right: -350px;
+            box-sizing: border-box;
+            overflow-y: scroll;
+            z-index: 10;
+        }
+        .right-news-fixed.scroll-on .search-top{
+            display: none;
+        }
+        .right-news-fixed.scroll-on .nav-tab{
+            padding: 26px 0 20px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 10;
+        }
+        .right-news-fixed.scroll-on .tab-common{
+            padding-top: 84px;
+        }
+        .right-news-fixed.scroll-on .close-btn{
+            position: fixed;
+            top: 10px;
+            right: 340px;
+            left: auto;
+            z-index: 11;
+        }
+        .right-news-fixed .close-btn{
+            width: 10px;
+            height: 10px;
+            background: pink;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+        .right-news-fixed .search-top{
+            padding: 24px 40px 20px;
+            font-size: 14px;
+            color: #333;
+            line-height: 30px;
+        }
+        .right-news-fixed .search-top .box{
+            background: #F2F2F2;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+        .right-news-fixed .search-top input{
+            float: left;
+            width: 230px;
+            height: 30px;
+            background: none;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            text-indent: 12px;
+            outline: none;
+        }
+        .right-news-fixed .search-top .search-btn{
+            border-left: 1px solid #dedede;
+            margin: 5px 0;
+            height: 20px;
+            display: block;
+            float: right;
+            width: 32px;
+            cursor: pointer;
+        }
+        .right-news-fixed .nav-tab{
+            width: 360px;
+            background: #fff;
+        }
+        .right-news-fixed .nav-tab .box{
+            color: #59BBC4;
+            font-size: 14px;
+            text-align: center;
+            border: 1px solid #59BBC4;
+            border-radius: 4px;
+            line-height: 36px;
+            width: 309px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .right-news-fixed .nav-tab span{
+            display: inline-block;
+            float: left;
+            width: 103px;
+            cursor: pointer;
+        }
+        .right-news-fixed .nav-tab span:nth-child(2){
+            border-left: 1px solid #59BBC4;
+            border-right: 1px solid #59BBC4;
+            box-sizing: border-box;
+        }
+        .right-news-fixed .nav-tab span.active{
+            color: #fff;
+            background: #59BBC4;
+        }
+        .right-news-fixed .tab-common .title{
+            font-size: 16px;
+            color: #333;
+            overflow: hidden;
+            line-height: 20px;
+            padding: 9px 0;
+            border-bottom: 1px solid #dedede;
+        }
+        .right-news-fixed .tab-common .title i{
+            display: block;
+            float: left;
+            height: 20px;
+            width: 3px;
+            margin-right: 8px;
+            background: #59BBC4;
+            box-shadow: 1px 0 3px 0 #59BBC4;
+            border-radius: 1px;
+        }
+        .right-news-fixed .send-btn{
+            width: 44px;
+            height: 20px;
+            line-height: 20px;
+            color: #59BBC4;
+            border-radius: 10px;
+            border: 1px solid #59BBC4;
+            display: block;
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .right-news-fixed .tab-common .box p.tit{
+            color: #333333;
+            line-height: 22px;
+            font-size: 14px;
+            margin: 8px 0 2px;
+        }
+        .right-news-fixed .tab-common .box{
+            font-size: 12px;
+            color: #333333;
+            line-height: 20px;
+        }
+        .right-news-fixed .tab-common .box p span{
+            color: #333;
+        }
+        .right-news-fixed .tab-common .box p{
+            color: #666;
+        }
+        .right-news-fixed .tab-common .part{
+            border-bottom: 1px solid #dedede;
+            padding: 15px 20px 16px;
+            font-size: 14px;
+        }
+        .right-news-fixed .tab-common .bot{
+            overflow: hidden;
+            padding-bottom: 4px;
+        }
+        .right-news-fixed .tab-common .bot em{
+            font-size: 12px;
+            color: #333333;
+            display: inline-block;
+            float: left;
+            margin-right: 40px;
+            font-style: normal;
+        }
+        .right-news-fixed .tab-common .img-box{
+            overflow: hidden;
+            font-size: 12px;
+            color: #333333;
+            line-height: 20px;
+            padding-top: 8px;
+        }
+        .right-news-fixed .tab-common .img-box img{
+            width: 73px;
+            height: 73px;
+            border:0;
+            box-sizing: border-box;
+            vertical-align: middle;
+            float: left;
+            margin-right: 4px;
+        }
+        .right-news-fixed .tab-common .img-box .fr{
+            width: 151px;
+            position: relative;
+            top: -3px;
+        }
+        .right-news-fixed .tab-box-third .box{
+            padding-top: 8px;
+        }
+        .hide{
+            display: none;
+        }
+        .nothing-box{
+            padding: 120px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+        }
+        .nothing-box .img-box{
+            width: 118px;
+            height: 118px;
+            background: pink;
+            margin: 0 auto 20px;
+            padding-top: 0;
+        }
+    </style>
 </head>
 <body>
+<!-- 右边内容 start -->
+<div class="box">
+    <p class="news-btn">拉出内容</p>
+</div>
+<div class="right-news-fixed">
+    <div class="close-btn"></div>
+    <div class="scroll-box">
+        <!-- 搜索 start -->
+        <div class="search-top">
+            <div class="box">
+                <input type="text" placeholder="请输入搜索内容">
+                <span class="search-btn"></span>
+            </div>
+        </div>
+        <!-- 搜索 end -->
+        <!-- 切换tab start-->
+        <div class="nav-tab">
+            <div class="box">
+                <span class="active">百科</span>
+                <span>商品</span>
+                <span>案例</span>
+            </div>
+        </div>
+        <!-- 切换tab  end-->
+        <!-- 搜索内容 start-->
+        <div class="tab-box-first tab-common">
+            <!-- 百科 -->
+            <div class="part">
+                <div class="title">
+                    <i></i>
+                    <span class="fl">切开双眼皮</span>
+                    <span class="send-btn fr">发送</span>
+                </div>
+                <div class="box">
+                    <p class="tit">切开双眼皮是按设计的重睑线切开上睑皮肤，去除多余皮肤、肌肉、结缔组织与脂肪，缝…</p>
+                    <p><span>项目特色：</span>效果稳固持久，能解决复杂的眼睑问题</p>
+                    <p><span>项目别名：</span>全切双眼皮、重脸术、全切双眼皮、全切双眼皮</p>
+                    <p><span>参考价格：</span>约2000～3000元</p>
+                </div>
+            </div>
+            <div class="part">
+                <div class="title">
+                    <i></i>
+                    <span class="fl">切开双眼皮</span>
+                    <span class="send-btn fr">发送</span>
+                </div>
+                <div class="box">
+                    <p class="tit">切开双眼皮是按设计的重睑线切开上睑皮肤，去除多余皮肤、肌肉、结缔组织与脂肪，缝…</p>
+                    <p><span>项目特色：</span>效果稳固持久，能解决复杂的眼睑问题</p>
+                    <p><span>项目别名：</span>全切双眼皮、重脸术、全切双眼皮、全切双眼皮</p>
+                    <p><span>参考价格：</span>约2000～3000元</p>
+                </div>
+            </div>
+            <div class="part">
+                <div class="title">
+                    <i></i>
+                    <span class="fl">切开双眼皮</span>
+                    <span class="send-btn fr">发送</span>
+                </div>
+                <div class="box">
+                    <p class="tit">切开双眼皮是按设计的重睑线切开上睑皮肤，去除多余皮肤、肌肉、结缔组织与脂肪，缝…</p>
+                    <p><span>项目特色：</span>效果稳固持久，能解决复杂的眼睑问题</p>
+                    <p><span>项目别名：</span>全切双眼皮、重脸术、全切双眼皮、全切双眼皮</p>
+                    <p><span>参考价格：</span>约2000～3000元</p>
+                </div>
+            </div>
+            <div class="part">
+                <div class="title">
+                    <i></i>
+                    <span class="fl">切开双眼皮</span>
+                    <span class="send-btn fr">发送</span>
+                </div>
+                <div class="box">
+                    <p class="tit">切开双眼皮是按设计的重睑线切开上睑皮肤，去除多余皮肤、肌肉、结缔组织与脂肪，缝…</p>
+                    <p><span>项目特色：</span>效果稳固持久，能解决复杂的眼睑问题</p>
+                    <p><span>项目别名：</span>全切双眼皮、重脸术、全切双眼皮、全切双眼皮</p>
+                    <p><span>参考价格：</span>约2000～3000元</p>
+                </div>
+            </div>
+            <div class="part">
+                <div class="title">
+                    <i></i>
+                    <span class="fl">切开双眼皮</span>
+                    <span class="send-btn fr">发送</span>
+                </div>
+                <div class="box">
+                    <p class="tit">切开双眼皮是按设计的重睑线切开上睑皮肤，去除多余皮肤、肌肉、结缔组织与脂肪，缝…</p>
+                    <p><span>项目特色：</span>效果稳固持久，能解决复杂的眼睑问题</p>
+                    <p><span>项目别名：</span>全切双眼皮、重脸术、全切双眼皮、全切双眼皮</p>
+                    <p><span>参考价格：</span>约2000～3000元</p>
+                </div>
+            </div>
+            <div class="nothing-box">
+                <div class="img-box"></div>
+                <p>当前关键词在您机构暂无匹配</p>
+            </div>
+        </div>
+        <div class="tab-box-second tab-common hide">
+            <!-- 商品 -->
+            <div class="part">
+                <div class="box">
+                    <p class="tit">【开内眼角】【私信立减1200元】不开刀开眼角 镭射激光开眼角 美诗沁专注眼部整形23年</p>
+                    <div class="bot">
+                        <em>价格：3000元</em>
+                        <em>评分：5.0</em>
+                        <span class="send-btn fr">发送</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-box-third tab-common hide">
+            <!-- 案例 -->
+            <div class="part">
+                <div class="title">
+                    <i></i>
+                    <span>WANGFANG的案例</span>
+                    <span class="send-btn fr">发送</span>
+                </div>
+                <div class="box">
+                    <p><span>项目：</span>定点双眼皮</p>
+                    <p><span>医生：</span>朱昊</p>
+                    <p><span>商品：</span>【眼部修复】眼部基础修复过宽不对称等一次解…</p>
+                    <div class="img-box">
+                        <div class="fl">
+                            <img src=""><img src="">
+                        </div>
+                        <div class="fr">
+                            现在已经超级自然了，疼痛感也消失了，就是那种，大家都说你脸瘦了变漂亮了，却又得到的放不知道你变...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 搜索内容 end-->
+    </div>
+</div>
+<!-- 右边内容 end -->
+
+
+<script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+<script>
+    var _newsfix=$('.right-news-fixed');
+    //弹层隐藏方法
+    function newshide() {
+        _newsfix.animate({
+            right: '-350px',
+            speed: 500
+        },function () {
+            console.log('消失。。。');
+        });
+    }
+    _newsfix.on('click','.close-btn',function () {
+        //点击关闭
+        newshide();
+    }).end().on('click','.nav-tab span',function () {
+        //tab切换
+        var _index=$(this).index();
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+        $('.tab-common').addClass('hide');
+        $('.tab-common').eq(_index).removeClass('hide');
+    });
+    _newsfix.scroll(function () {
+        if(_newsfix.scrollTop()>$('.search-top').height()){
+            $(this).addClass('scroll-on');
+        }else {
+            $(this).removeClass('scroll-on');
+        }
+    });
+    //点击关键词
+    $('.news-btn').on('click',function (){
+        if(parseInt(_newsfix.css('right'))<0){
+            _newsfix.animate({
+                right: '0px',
+                speed: 500
+            },function () {
+                console.log('拉出来了吗？');
+            });
+        }else {
+            newshide();
+        }
+    });
+</script>
 
 </body>
 </html>
